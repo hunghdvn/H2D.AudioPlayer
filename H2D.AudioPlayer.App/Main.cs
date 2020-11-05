@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -378,7 +379,7 @@ namespace H2D.AudioPlayer.App
                 using (var openFile = new OpenFileDialog())
                 {
                     openFile.Multiselect = true;
-                    openFile.Filter = "Mp3 File|*.mp3";
+                    openFile.Filter = "Audio File|*.mp3; *.wav";
                     if (openFile.ShowDialog() == DialogResult.OK)
                     {
                         axWindowsMediaPlayer.currentPlaylist = axWindowsMediaPlayer.newPlaylist("", "");
@@ -432,7 +433,8 @@ namespace H2D.AudioPlayer.App
                 {
                     if (dic.ShowDialog() == DialogResult.OK)
                     {
-                        var lstFile = Directory.GetFiles(dic.SelectedPath, "*.mp3");
+                        var lstFile = Directory.GetFiles(dic.SelectedPath, "*.mp3").ToList();
+                        lstFile.AddRange(Directory.GetFiles(dic.SelectedPath, "*.wav"));
                         axWindowsMediaPlayer.currentPlaylist = axWindowsMediaPlayer.newPlaylist("", "");
                         foreach (var item in lstFile)
                         {
@@ -451,6 +453,15 @@ namespace H2D.AudioPlayer.App
         private void btnRecent_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void axWindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if(axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsMediaEnded)
+            {
+                Playing = false;
+                picPlay.Image = Resources.play;
+            }    
         }
     }
 }
