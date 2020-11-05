@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "H2D.AudioPlayer.App", "H2D.AudioPlayer.App\H2D.AudioPlayer.App.csproj", "{3004655E-CCCE-4E97-A54A-D58A74D2F130}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3004655E-CCCE-4E97-A54A-D58A74D2F130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3004655E-CCCE-4E97-A54A-D58A74D2F130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3004655E-CCCE-4E97-A54A-D58A74D2F130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3004655E-CCCE-4E97-A54A-D58A74D2F130}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0ED9891D-E3C6-41C6-868E-FC3B6E866951}
+	EndGlobalSection
+EndGlobal
