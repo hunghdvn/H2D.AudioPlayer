@@ -1,5 +1,6 @@
 ﻿using H2D.AudioPlayer.App.Properties;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,10 +17,19 @@ namespace H2D.AudioPlayer.App
         private bool Mute = false;
         private int CurrentVol = 0;
         private bool ShowList = false;
+        private List<string> ListFile;
+        private bool BIsMouseDown = false;
 
-        public Main()
+        public Main(List<string> lstFile)
         {
             InitializeComponent();
+            ListFile = lstFile;
+        }
+
+        public void AddNewTrack(string url)
+        {
+            if()
+            axWindowsMediaPlayer.currentPlaylist.appendItem(axWindowsMediaPlayer.newMedia(url));
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -32,6 +42,11 @@ namespace H2D.AudioPlayer.App
                 pnPlayList.Width = 0;
                 pnTimeCurrent.Width = 0;
                 ShowVolume();
+                if (ListFile.Count > 0)
+                {
+                    AddPlayList(ListFile);
+                    picPlay_Click(null, null);
+                }
             }
             catch (Exception ex)
             {
@@ -276,18 +291,13 @@ namespace H2D.AudioPlayer.App
 
         private void pnVol_MouseDown(object sender, MouseEventArgs e)
         {
-            try
-            {
-                SetVolume(e.Location.X);
-            }
-            catch (Exception ex)
-            {
-                ex.ShowException();
-            }
+            BIsMouseDown = true;
         }
 
         private void SetVolume(double x)
         {
+            if (!BIsMouseDown)
+                return;
             var totalVol = pnVol.Width;
             var vol = x / totalVol * 100;
             axWindowsMediaPlayer.settings.volume = (int)vol;
@@ -296,14 +306,7 @@ namespace H2D.AudioPlayer.App
 
         private void pnVolCurrent_MouseDown(object sender, MouseEventArgs e)
         {
-            try
-            {
-                SetVolume(e.Location.X);
-            }
-            catch (Exception ex)
-            {
-                ex.ShowException();
-            }
+            BIsMouseDown = true;
         }
 
         private void picVol_Click(object sender, EventArgs e)
@@ -379,15 +382,11 @@ namespace H2D.AudioPlayer.App
                 using (var openFile = new OpenFileDialog())
                 {
                     openFile.Multiselect = true;
-                    openFile.Filter = "Audio File|*.mp3; *.wav";
+                    openFile.Filter = "Audio File|*.mp3; *.wav; *.mp4";
                     if (openFile.ShowDialog() == DialogResult.OK)
                     {
                         axWindowsMediaPlayer.currentPlaylist = axWindowsMediaPlayer.newPlaylist("", "");
-                        foreach (var item in openFile.FileNames)
-                        {
-                            axWindowsMediaPlayer.currentPlaylist.appendItem(axWindowsMediaPlayer.newMedia(item));
-
-                        }
+                        AddPlayList(openFile.FileNames.ToList());
                     }
                     picPlay_Click(null, null);
                 }
@@ -395,6 +394,14 @@ namespace H2D.AudioPlayer.App
             catch (Exception ex)
             {
                 ex.ShowException();
+            }
+        }
+
+        private void AddPlayList(List<string> lists)
+        {
+            foreach (var item in lists)
+            {
+                axWindowsMediaPlayer.currentPlaylist.appendItem(axWindowsMediaPlayer.newMedia(item));
             }
         }
 
@@ -457,11 +464,69 @@ namespace H2D.AudioPlayer.App
 
         private void axWindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
-            if(axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsMediaEnded)
+            if (axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsMediaEnded)
             {
                 Playing = false;
                 picPlay.Image = Resources.play;
-            }    
+            }
+        }
+
+        private void pnVol_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                SetVolume(e.Location.X);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void pnVol_MouseUp(object sender, MouseEventArgs e)
+        {
+            BIsMouseDown = false;
+        }
+
+        private void pnVolCurrent_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                SetVolume(e.Location.X);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void pnVolCurrent_MouseUp(object sender, MouseEventArgs e)
+        {
+            BIsMouseDown = false;
+        }
+
+        private void pnVolCurrent_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                SetVolume(e.Location.X);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void pnVol_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                SetVolume(e.Location.X);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
         }
     }
 }

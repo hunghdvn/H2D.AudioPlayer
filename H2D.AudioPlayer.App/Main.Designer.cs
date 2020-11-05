@@ -439,7 +439,10 @@
             this.pnVol.Name = "pnVol";
             this.pnVol.Size = new System.Drawing.Size(153, 7);
             this.pnVol.TabIndex = 20;
+            this.pnVol.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnVol_MouseClick);
             this.pnVol.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnVol_MouseDown);
+            this.pnVol.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnVol_MouseMove);
+            this.pnVol.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnVol_MouseUp);
             // 
             // pnVolCurrent
             // 
@@ -449,7 +452,10 @@
             this.pnVolCurrent.Name = "pnVolCurrent";
             this.pnVolCurrent.Size = new System.Drawing.Size(50, 7);
             this.pnVolCurrent.TabIndex = 1;
+            this.pnVolCurrent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnVolCurrent_MouseClick);
             this.pnVolCurrent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnVolCurrent_MouseDown);
+            this.pnVolCurrent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnVolCurrent_MouseMove);
+            this.pnVolCurrent.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnVolCurrent_MouseUp);
             // 
             // lbVol
             // 
