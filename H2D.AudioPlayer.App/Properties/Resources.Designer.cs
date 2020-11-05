@@ -113,6 +113,16 @@ namespace H2D.AudioPlayer.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap playing {
+            get {
+                object obj = ResourceManager.GetObject("playing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap playlist_off {
             get {
                 object obj = ResourceManager.GetObject("playlist_off", resourceCulture);
