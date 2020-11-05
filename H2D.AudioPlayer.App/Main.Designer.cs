@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label label1;
-            System.Windows.Forms.Label label4;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.pnMenu = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
@@ -70,8 +68,6 @@
             this.pnPlayList = new System.Windows.Forms.Panel();
             this.timerPlay = new System.Windows.Forms.Timer(this.components);
             this.timerPanRight = new System.Windows.Forms.Timer(this.components);
-            label1 = new System.Windows.Forms.Label();
-            label4 = new System.Windows.Forms.Label();
             this.pnMenu.SuspendLayout();
             this.pnSubPlaylist.SuspendLayout();
             this.pnSubMedia.SuspendLayout();
@@ -88,39 +84,7 @@
             this.pnCenter.SuspendLayout();
             this.pnInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
-            this.pnPlayList.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
-            label1.Dock = System.Windows.Forms.DockStyle.Top;
-            label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            label1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.ForeColor = System.Drawing.Color.Silver;
-            label1.Location = new System.Drawing.Point(0, 45);
-            label1.Name = "label1";
-            label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            label1.Size = new System.Drawing.Size(300, 45);
-            label1.TabIndex = 1;
-            label1.Text = "label1";
-            label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            label4.Dock = System.Windows.Forms.DockStyle.Top;
-            label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            label4.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label4.ForeColor = System.Drawing.Color.Silver;
-            label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
-            label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            label4.Location = new System.Drawing.Point(0, 0);
-            label4.Name = "label4";
-            label4.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            label4.Size = new System.Drawing.Size(300, 45);
-            label4.TabIndex = 0;
-            label4.Text = "     label4";
-            label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnMenu
             // 
@@ -499,7 +463,10 @@
             this.pnTime.Name = "pnTime";
             this.pnTime.Size = new System.Drawing.Size(430, 7);
             this.pnTime.TabIndex = 19;
+            this.pnTime.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnTime_MouseClick);
             this.pnTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnTime_MouseDown);
+            this.pnTime.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnTime_MouseMove);
+            this.pnTime.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnTime_MouseUp);
             // 
             // pnTimeCurrent
             // 
@@ -509,7 +476,10 @@
             this.pnTimeCurrent.Name = "pnTimeCurrent";
             this.pnTimeCurrent.Size = new System.Drawing.Size(200, 7);
             this.pnTimeCurrent.TabIndex = 0;
+            this.pnTimeCurrent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnTimeCurrent_MouseClick);
             this.pnTimeCurrent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnTimeCurrent_MouseDown);
+            this.pnTimeCurrent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnTimeCurrent_MouseMove);
+            this.pnTimeCurrent.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnTimeCurrent_MouseUp);
             // 
             // picVol
             // 
@@ -651,13 +621,12 @@
             // 
             this.pnPlayList.AutoScroll = true;
             this.pnPlayList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.pnPlayList.Controls.Add(label1);
-            this.pnPlayList.Controls.Add(label4);
             this.pnPlayList.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnPlayList.Location = new System.Drawing.Point(524, 0);
             this.pnPlayList.Name = "pnPlayList";
             this.pnPlayList.Size = new System.Drawing.Size(300, 402);
             this.pnPlayList.TabIndex = 1;
+            this.pnPlayList.MouseHover += new System.EventHandler(this.pnPlayList_MouseHover);
             // 
             // timerPlay
             // 
@@ -665,7 +634,7 @@
             // 
             // timerPanRight
             // 
-            this.timerPanRight.Interval = 10;
+            this.timerPanRight.Interval = 20;
             this.timerPanRight.Tick += new System.EventHandler(this.timerPanRight_Tick);
             // 
             // Main
@@ -702,7 +671,6 @@
             this.pnCenter.ResumeLayout(false);
             this.pnInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).EndInit();
-            this.pnPlayList.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

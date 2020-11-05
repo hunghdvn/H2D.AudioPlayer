@@ -18,6 +18,7 @@ namespace H2D.AudioPlayer.App
         private int CurrentVol = 0;
         private bool ShowList = false;
         private List<string> ListFile;
+        private List<string> CurrentPlayList = new List<string>();
         private bool BIsMouseDown = false;
 
         public Main(List<string> lstFile)
@@ -28,14 +29,22 @@ namespace H2D.AudioPlayer.App
 
         public void AddNewTrack(string url)
         {
-            if()
-            axWindowsMediaPlayer.currentPlaylist.appendItem(axWindowsMediaPlayer.newMedia(url));
+            try
+            {
+                AddTrackToPlayList(url);
+                LoadPlayList();
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
             try
             {
+                CurrentPlayList = new List<string>();
                 axWindowsMediaPlayer.settings.volume = 100;
                 pnSubMedia.Visible = true;
                 pnSubPlaylist.Visible = false;
@@ -47,6 +56,8 @@ namespace H2D.AudioPlayer.App
                     AddPlayList(ListFile);
                     picPlay_Click(null, null);
                 }
+                pnPlayList.HorizontalScroll.Visible = false;
+                pnPlayList.VerticalScroll.Visible = false;
             }
             catch (Exception ex)
             {
@@ -108,13 +119,37 @@ namespace H2D.AudioPlayer.App
         {
             if (!ShowList)
                 return;
+            if ((axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsPlaying ||
+                 axWindowsMediaPlayer.playState == WMPLib.WMPPlayState.wmppsTransitioning) &&
+                 pnPlayList.Controls.Count == CurrentPlayList.Count)
+            {
+                foreach (Label label in pnPlayList.Controls)
+                {
+                    if (label.Text == "     " + axWindowsMediaPlayer.currentMedia.name)
+                    {
+                        label.BackColor = Color.FromArgb(21, 7, 17);
+                        label.Image = Resources.playing;
+                        label.Focus();
+                    }
+                    else if (label.BackColor == Color.FromArgb(21, 7, 17))
+                    {
+                        label.BackColor = Color.FromArgb(35, 32, 39);
+                        label.Image = null;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                return;
+            }
             pnPlayList.Controls.Clear();
             int count = axWindowsMediaPlayer.currentPlaylist.count;
             if (count == 0)
                 return;
             for (int i = count - 1; i > -1; i--)
             {
-                var font = new Font("Tahoma", 10);
+                var font = new Font("Tahoma", 9);
                 var label = new Label
                 {
                     Font = font,
@@ -139,7 +174,41 @@ namespace H2D.AudioPlayer.App
                     label.Image = null;
                 }
                 label.DoubleClick += Song_DoubleClick;
+                label.MouseHover += Song_MouseHover;
+                label.MouseLeave += Song_MouseLeave;
                 pnPlayList.Controls.Add(label);
+            }
+        }
+
+        private void Song_MouseLeave(object sender, EventArgs e)
+        {
+            try
+            {
+                var label = sender as Label;
+                if (label == null)
+                    return;
+                if (label.Image != null)
+                    return;
+                label.BackColor = Color.FromArgb(35, 32, 39);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void Song_MouseHover(object sender, EventArgs e)
+        {
+            try
+            {
+                var label = sender as Label;
+                if (label == null)
+                    return;
+                label.BackColor = Color.FromArgb(21, 7, 17);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
             }
         }
 
@@ -148,13 +217,27 @@ namespace H2D.AudioPlayer.App
             try
             {
                 var lable = sender as Label;
+                if (lable == null)
+                    return;
                 int index = int.Parse(lable.Tag.ToString());
-                axWindowsMediaPlayer.Ctlcontrols.playItem(axWindowsMediaPlayer.currentPlaylist.Item[index]);
+                var track = axWindowsMediaPlayer.currentPlaylist.Item[index];
+                Playing = false;
+                PlayByTrack(track);
                 LoadPlayList();
             }
             catch (Exception ex)
             {
                 ex.ShowException();
+            }
+        }
+
+        private void PlayByTrack(WMPLib.IWMPMedia track)
+        {
+            if (!Playing)
+            {
+                axWindowsMediaPlayer.Ctlcontrols.playItem(track);
+                picPlay.Image = Resources.pause;
+                Playing = true;
             }
         }
 
@@ -210,14 +293,16 @@ namespace H2D.AudioPlayer.App
                     axWindowsMediaPlayer.Ctlcontrols.pause();
                     picPlay.Image = Resources.play;
                     timerPlay.Stop();
+                    Playing = false;
                 }
                 else
                 {
+                    if (axWindowsMediaPlayer.currentMedia == null)
+                        return;
                     PlayMusic();
                     axWindowsMediaPlayer.Ctlcontrols.play();
                     picPlay.Image = Resources.pause;
                 }
-                Playing = !Playing;
             }
             catch (Exception ex)
             {
@@ -258,18 +343,22 @@ namespace H2D.AudioPlayer.App
 
         private void pnTime_MouseDown(object sender, MouseEventArgs e)
         {
-            try
+            if (axWindowsMediaPlayer.playState != WMPLib.WMPPlayState.wmppsPlaying)
             {
-                SetTime(e.Location.X);
+                BIsMouseDown = false;
+                return;
             }
-            catch (Exception ex)
-            {
-                ex.ShowException();
-            }
+            BIsMouseDown = true;
         }
 
         private void SetTime(int x)
         {
+            if (!BIsMouseDown)
+                return;
+            if (axWindowsMediaPlayer.playState != WMPLib.WMPPlayState.wmppsPlaying)
+            {
+                return;
+            }
             pnTimeCurrent.Width = x;
             var currentTime = (double)pnTimeCurrent.Width;
             var allTime = (double)pnTime.Width;
@@ -279,14 +368,12 @@ namespace H2D.AudioPlayer.App
 
         private void pnTimeCurrent_MouseDown(object sender, MouseEventArgs e)
         {
-            try
+            if (axWindowsMediaPlayer.playState != WMPLib.WMPPlayState.wmppsPlaying)
             {
-                SetTime(e.Location.X);
+                BIsMouseDown = false;
+                return;
             }
-            catch (Exception ex)
-            {
-                ex.ShowException();
-            }
+            BIsMouseDown = true;
         }
 
         private void pnVol_MouseDown(object sender, MouseEventArgs e)
@@ -358,14 +445,14 @@ namespace H2D.AudioPlayer.App
             {
                 if (ShowList)
                 {
-                    pnPlayList.Width += 10;
-                    if (pnPlayList.Width == 300)
+                    pnPlayList.Width += 50;
+                    if (pnPlayList.Width >= 300)
                         timerPanRight.Stop();
                 }
                 else
                 {
-                    pnPlayList.Width -= 10;
-                    if (pnPlayList.Width == 0)
+                    pnPlayList.Width -= 50;
+                    if (pnPlayList.Width <= 0)
                         timerPanRight.Stop();
                 }
             }
@@ -385,6 +472,7 @@ namespace H2D.AudioPlayer.App
                     openFile.Filter = "Audio File|*.mp3; *.wav; *.mp4";
                     if (openFile.ShowDialog() == DialogResult.OK)
                     {
+                        Playing = false;
                         axWindowsMediaPlayer.currentPlaylist = axWindowsMediaPlayer.newPlaylist("", "");
                         AddPlayList(openFile.FileNames.ToList());
                     }
@@ -399,9 +487,23 @@ namespace H2D.AudioPlayer.App
 
         private void AddPlayList(List<string> lists)
         {
+            CurrentPlayList.Clear();
             foreach (var item in lists)
             {
-                axWindowsMediaPlayer.currentPlaylist.appendItem(axWindowsMediaPlayer.newMedia(item));
+                AddTrackToPlayList(item, false);
+            }
+            LoadPlayList();
+        }
+
+        private void AddTrackToPlayList(string item, bool playAfter = true)
+        {
+            if (!CurrentPlayList.Contains(item))
+            {
+                CurrentPlayList.Add(item);
+                var track = axWindowsMediaPlayer.newMedia(item);
+                axWindowsMediaPlayer.currentPlaylist.appendItem(track);
+                if (playAfter)
+                    PlayByTrack(track);
             }
         }
 
@@ -425,6 +527,7 @@ namespace H2D.AudioPlayer.App
             {
                 axWindowsMediaPlayer.Ctlcontrols.previous();
                 PlayMusic();
+                LoadPlayList();
             }
             catch (Exception ex)
             {
@@ -440,13 +543,20 @@ namespace H2D.AudioPlayer.App
                 {
                     if (dic.ShowDialog() == DialogResult.OK)
                     {
+                        CurrentPlayList.Clear();
+                        Playing = false;
                         var lstFile = Directory.GetFiles(dic.SelectedPath, "*.mp3").ToList();
                         lstFile.AddRange(Directory.GetFiles(dic.SelectedPath, "*.wav"));
+                        lstFile.AddRange(Directory.GetFiles(dic.SelectedPath, "*.flac"));
+                        lstFile.AddRange(Directory.GetFiles(dic.SelectedPath, "*.mp4"));
+                        lstFile.AddRange(Directory.GetFiles(dic.SelectedPath, "*.mkv"));
+                        lstFile.AddRange(Directory.GetFiles(dic.SelectedPath, "*.avi"));
                         axWindowsMediaPlayer.currentPlaylist = axWindowsMediaPlayer.newPlaylist("", "");
                         foreach (var item in lstFile)
                         {
-                            axWindowsMediaPlayer.currentPlaylist.appendItem(axWindowsMediaPlayer.newMedia(item));
+                            AddTrackToPlayList(item, false);
                         }
+                        LoadPlayList();
                     }
                     picPlay_Click(null, null);
                 }
@@ -527,6 +637,74 @@ namespace H2D.AudioPlayer.App
             {
                 ex.ShowException();
             }
+        }
+
+        private void pnTime_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                SetTime(e.Location.X);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void pnTime_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                SetTime(e.Location.X);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void pnTime_MouseUp(object sender, MouseEventArgs e)
+        {
+            BIsMouseDown = false;
+        }
+
+        private void pnTimeCurrent_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                SetTime(e.Location.X);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void pnTimeCurrent_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                SetTime(e.Location.X);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void pnTimeCurrent_MouseUp(object sender, MouseEventArgs e)
+        {
+            BIsMouseDown = false;
+        }
+
+        private void pnPlayList_MouseHover(object sender, EventArgs e)
+        {
+            pnPlayList.AutoScroll = true;
+        }
+
+        private void panScross_MouseHover(object sender, EventArgs e)
+        {
+
         }
     }
 }
