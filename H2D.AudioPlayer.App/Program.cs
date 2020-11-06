@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace H2D.AudioPlayer.App
@@ -37,6 +35,7 @@ namespace H2D.AudioPlayer.App
             }
         }
     }
+
     class SingleInstanceAppStarter
     {
         static SingleInstanceApp app = null;

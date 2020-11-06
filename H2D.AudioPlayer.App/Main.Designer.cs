@@ -33,7 +33,7 @@
             this.pnMenu = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnTools = new System.Windows.Forms.Button();
             this.pnSubPlaylist = new System.Windows.Forms.Panel();
             this.btnExportPlaylist = new System.Windows.Forms.Button();
             this.btnImportPlaylist = new System.Windows.Forms.Button();
@@ -41,7 +41,6 @@
             this.btnNewPlayList = new System.Windows.Forms.Button();
             this.btnPlaylist = new System.Windows.Forms.Button();
             this.pnSubMedia = new System.Windows.Forms.Panel();
-            this.btnRecent = new System.Windows.Forms.Button();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.btnMedia = new System.Windows.Forms.Button();
@@ -68,6 +67,11 @@
             this.pnPlayList = new System.Windows.Forms.Panel();
             this.timerPlay = new System.Windows.Forms.Timer(this.components);
             this.timerPanRight = new System.Windows.Forms.Timer(this.components);
+            this.menuSong = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnRemoveTrack = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnOpenLocation = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnSubTools = new System.Windows.Forms.Panel();
+            this.btnConvert = new System.Windows.Forms.Button();
             this.pnMenu.SuspendLayout();
             this.pnSubPlaylist.SuspendLayout();
             this.pnSubMedia.SuspendLayout();
@@ -84,6 +88,8 @@
             this.pnCenter.SuspendLayout();
             this.pnInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
+            this.menuSong.SuspendLayout();
+            this.pnSubTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnMenu
@@ -92,7 +98,8 @@
             this.pnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.pnMenu.Controls.Add(this.btnExit);
             this.pnMenu.Controls.Add(this.btnHelp);
-            this.pnMenu.Controls.Add(this.button3);
+            this.pnMenu.Controls.Add(this.pnSubTools);
+            this.pnMenu.Controls.Add(this.btnTools);
             this.pnMenu.Controls.Add(this.pnSubPlaylist);
             this.pnMenu.Controls.Add(this.btnPlaylist);
             this.pnMenu.Controls.Add(this.pnSubMedia);
@@ -115,7 +122,7 @@
             this.btnExit.ForeColor = System.Drawing.Color.Silver;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit.Location = new System.Drawing.Point(0, 565);
+            this.btnExit.Location = new System.Drawing.Point(0, 563);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -137,7 +144,7 @@
             this.btnHelp.ForeColor = System.Drawing.Color.Silver;
             this.btnHelp.Image = ((System.Drawing.Image)(resources.GetObject("btnHelp.Image")));
             this.btnHelp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHelp.Location = new System.Drawing.Point(0, 520);
+            this.btnHelp.Location = new System.Drawing.Point(0, 518);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -147,27 +154,29 @@
             this.btnHelp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
-            // button3
+            // btnTools
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.Silver;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 475);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(233, 45);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Tools";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnTools.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTools.FlatAppearance.BorderSize = 0;
+            this.btnTools.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.btnTools.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(22)))), ((int)(((byte)(34)))));
+            this.btnTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTools.ForeColor = System.Drawing.Color.Silver;
+            this.btnTools.Image = ((System.Drawing.Image)(resources.GetObject("btnTools.Image")));
+            this.btnTools.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTools.Location = new System.Drawing.Point(0, 433);
+            this.btnTools.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTools.Name = "btnTools";
+            this.btnTools.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.btnTools.Size = new System.Drawing.Size(233, 45);
+            this.btnTools.TabIndex = 5;
+            this.btnTools.Text = "Tools";
+            this.btnTools.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTools.UseVisualStyleBackColor = true;
+            this.btnTools.Click += new System.EventHandler(this.btnTools_Click);
             // 
             // pnSubPlaylist
             // 
@@ -177,7 +186,7 @@
             this.pnSubPlaylist.Controls.Add(this.btnManagingPlaylist);
             this.pnSubPlaylist.Controls.Add(this.btnNewPlayList);
             this.pnSubPlaylist.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnSubPlaylist.Location = new System.Drawing.Point(0, 312);
+            this.pnSubPlaylist.Location = new System.Drawing.Point(0, 270);
             this.pnSubPlaylist.Name = "pnSubPlaylist";
             this.pnSubPlaylist.Size = new System.Drawing.Size(233, 163);
             this.pnSubPlaylist.TabIndex = 4;
@@ -249,6 +258,7 @@
             this.btnNewPlayList.Text = "New playlist";
             this.btnNewPlayList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNewPlayList.UseVisualStyleBackColor = true;
+            this.btnNewPlayList.Click += new System.EventHandler(this.btnNewPlayList_Click);
             // 
             // btnPlaylist
             // 
@@ -260,7 +270,7 @@
             this.btnPlaylist.ForeColor = System.Drawing.Color.Silver;
             this.btnPlaylist.Image = ((System.Drawing.Image)(resources.GetObject("btnPlaylist.Image")));
             this.btnPlaylist.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPlaylist.Location = new System.Drawing.Point(0, 267);
+            this.btnPlaylist.Location = new System.Drawing.Point(0, 225);
             this.btnPlaylist.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPlaylist.Name = "btnPlaylist";
             this.btnPlaylist.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
@@ -275,32 +285,13 @@
             // pnSubMedia
             // 
             this.pnSubMedia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.pnSubMedia.Controls.Add(this.btnRecent);
             this.pnSubMedia.Controls.Add(this.btnOpenFolder);
             this.pnSubMedia.Controls.Add(this.btnOpenFile);
             this.pnSubMedia.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnSubMedia.Location = new System.Drawing.Point(0, 145);
             this.pnSubMedia.Name = "pnSubMedia";
-            this.pnSubMedia.Size = new System.Drawing.Size(233, 122);
+            this.pnSubMedia.Size = new System.Drawing.Size(233, 80);
             this.pnSubMedia.TabIndex = 2;
-            // 
-            // btnRecent
-            // 
-            this.btnRecent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnRecent.FlatAppearance.BorderSize = 0;
-            this.btnRecent.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.btnRecent.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.btnRecent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRecent.ForeColor = System.Drawing.Color.Silver;
-            this.btnRecent.Location = new System.Drawing.Point(0, 80);
-            this.btnRecent.Name = "btnRecent";
-            this.btnRecent.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.btnRecent.Size = new System.Drawing.Size(233, 40);
-            this.btnRecent.TabIndex = 2;
-            this.btnRecent.Text = "Open recent media";
-            this.btnRecent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecent.UseVisualStyleBackColor = true;
-            this.btnRecent.Click += new System.EventHandler(this.btnRecent_Click);
             // 
             // btnOpenFolder
             // 
@@ -403,10 +394,10 @@
             this.pnVol.Name = "pnVol";
             this.pnVol.Size = new System.Drawing.Size(153, 7);
             this.pnVol.TabIndex = 20;
-            this.pnVol.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnVol_MouseClick);
-            this.pnVol.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnVol_MouseDown);
-            this.pnVol.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnVol_MouseMove);
-            this.pnVol.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnVol_MouseUp);
+            this.pnVol.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Vol_MouseClick);
+            this.pnVol.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Vol_MouseDown);
+            this.pnVol.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Vol_MouseMove);
+            this.pnVol.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Vol_MouseUp);
             // 
             // pnVolCurrent
             // 
@@ -416,10 +407,10 @@
             this.pnVolCurrent.Name = "pnVolCurrent";
             this.pnVolCurrent.Size = new System.Drawing.Size(50, 7);
             this.pnVolCurrent.TabIndex = 1;
-            this.pnVolCurrent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnVolCurrent_MouseClick);
-            this.pnVolCurrent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnVolCurrent_MouseDown);
-            this.pnVolCurrent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnVolCurrent_MouseMove);
-            this.pnVolCurrent.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnVolCurrent_MouseUp);
+            this.pnVolCurrent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Vol_MouseClick);
+            this.pnVolCurrent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Vol_MouseDown);
+            this.pnVolCurrent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Vol_MouseMove);
+            this.pnVolCurrent.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Vol_MouseUp);
             // 
             // lbVol
             // 
@@ -463,10 +454,10 @@
             this.pnTime.Name = "pnTime";
             this.pnTime.Size = new System.Drawing.Size(430, 7);
             this.pnTime.TabIndex = 19;
-            this.pnTime.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnTime_MouseClick);
-            this.pnTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnTime_MouseDown);
-            this.pnTime.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnTime_MouseMove);
-            this.pnTime.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnTime_MouseUp);
+            this.pnTime.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Time_MouseClick);
+            this.pnTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Time_MouseDown);
+            this.pnTime.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Time_MouseMove);
+            this.pnTime.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Time_MouseUp);
             // 
             // pnTimeCurrent
             // 
@@ -476,10 +467,10 @@
             this.pnTimeCurrent.Name = "pnTimeCurrent";
             this.pnTimeCurrent.Size = new System.Drawing.Size(200, 7);
             this.pnTimeCurrent.TabIndex = 0;
-            this.pnTimeCurrent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnTimeCurrent_MouseClick);
-            this.pnTimeCurrent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnTimeCurrent_MouseDown);
-            this.pnTimeCurrent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnTimeCurrent_MouseMove);
-            this.pnTimeCurrent.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnTimeCurrent_MouseUp);
+            this.pnTimeCurrent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Time_MouseClick);
+            this.pnTimeCurrent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Time_MouseDown);
+            this.pnTimeCurrent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Time_MouseMove);
+            this.pnTimeCurrent.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Time_MouseUp);
             // 
             // picVol
             // 
@@ -606,14 +597,12 @@
             // 
             // axWindowsMediaPlayer
             // 
-            this.axWindowsMediaPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.axWindowsMediaPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.axWindowsMediaPlayer.Enabled = true;
             this.axWindowsMediaPlayer.Location = new System.Drawing.Point(0, 0);
             this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
             this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
-            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(274, 463);
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(274, 402);
             this.axWindowsMediaPlayer.TabIndex = 0;
             this.axWindowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer_PlayStateChange);
             // 
@@ -626,7 +615,6 @@
             this.pnPlayList.Name = "pnPlayList";
             this.pnPlayList.Size = new System.Drawing.Size(300, 402);
             this.pnPlayList.TabIndex = 1;
-            this.pnPlayList.MouseHover += new System.EventHandler(this.pnPlayList_MouseHover);
             // 
             // timerPlay
             // 
@@ -634,8 +622,69 @@
             // 
             // timerPanRight
             // 
-            this.timerPanRight.Interval = 20;
+            this.timerPanRight.Interval = 15;
             this.timerPanRight.Tick += new System.EventHandler(this.timerPanRight_Tick);
+            // 
+            // menuSong
+            // 
+            this.menuSong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.menuSong.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.menuSong.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnRemoveTrack,
+            this.btnOpenLocation});
+            this.menuSong.Name = "menuSong";
+            this.menuSong.ShowImageMargin = false;
+            this.menuSong.Size = new System.Drawing.Size(178, 64);
+            this.menuSong.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuSong_ItemClicked);
+            // 
+            // btnRemoveTrack
+            // 
+            this.btnRemoveTrack.AutoSize = false;
+            this.btnRemoveTrack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.btnRemoveTrack.ForeColor = System.Drawing.Color.Silver;
+            this.btnRemoveTrack.Name = "btnRemoveTrack";
+            this.btnRemoveTrack.Size = new System.Drawing.Size(202, 30);
+            this.btnRemoveTrack.Text = "Delete";
+            this.btnRemoveTrack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveTrack.MouseHover += new System.EventHandler(this.btnRemoveTrack_MouseHover);
+            // 
+            // btnOpenLocation
+            // 
+            this.btnOpenLocation.AutoSize = false;
+            this.btnOpenLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.btnOpenLocation.ForeColor = System.Drawing.Color.Silver;
+            this.btnOpenLocation.Name = "btnOpenLocation";
+            this.btnOpenLocation.Size = new System.Drawing.Size(202, 30);
+            this.btnOpenLocation.Text = "Open file location";
+            this.btnOpenLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOpenLocation.MouseHover += new System.EventHandler(this.btnOpenLocation_MouseHover);
+            // 
+            // pnSubTools
+            // 
+            this.pnSubTools.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.pnSubTools.Controls.Add(this.btnConvert);
+            this.pnSubTools.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnSubTools.Location = new System.Drawing.Point(0, 478);
+            this.pnSubTools.Name = "pnSubTools";
+            this.pnSubTools.Size = new System.Drawing.Size(233, 40);
+            this.pnSubTools.TabIndex = 8;
+            // 
+            // btnConvert
+            // 
+            this.btnConvert.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConvert.FlatAppearance.BorderSize = 0;
+            this.btnConvert.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.btnConvert.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.btnConvert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConvert.ForeColor = System.Drawing.Color.Silver;
+            this.btnConvert.Location = new System.Drawing.Point(0, 0);
+            this.btnConvert.Name = "btnConvert";
+            this.btnConvert.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnConvert.Size = new System.Drawing.Size(233, 40);
+            this.btnConvert.TabIndex = 0;
+            this.btnConvert.Text = "Media convert";
+            this.btnConvert.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConvert.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -671,6 +720,8 @@
             this.pnCenter.ResumeLayout(false);
             this.pnInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).EndInit();
+            this.menuSong.ResumeLayout(false);
+            this.pnSubTools.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -683,13 +734,12 @@
         private System.Windows.Forms.Panel pnLogo;
         private System.Windows.Forms.Button btnMedia;
         private System.Windows.Forms.Panel pnSubMedia;
-        private System.Windows.Forms.Button btnRecent;
         private System.Windows.Forms.Button btnOpenFolder;
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.Button btnPlaylist;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnTools;
         private System.Windows.Forms.Panel pnSubPlaylist;
         private System.Windows.Forms.Button btnExportPlaylist;
         private System.Windows.Forms.Button btnImportPlaylist;
@@ -715,5 +765,10 @@
         private System.Windows.Forms.Panel pnInfo;
         private System.Windows.Forms.Label lbSongName;
         private System.Windows.Forms.Panel pnVolCurrent;
+        private System.Windows.Forms.ContextMenuStrip menuSong;
+        private System.Windows.Forms.ToolStripMenuItem btnRemoveTrack;
+        private System.Windows.Forms.ToolStripMenuItem btnOpenLocation;
+        private System.Windows.Forms.Panel pnSubTools;
+        private System.Windows.Forms.Button btnConvert;
     }
 }

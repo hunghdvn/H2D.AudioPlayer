@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace H2D.AudioPlayer.App
 {
-    public partial class Form1 : Form
+    public partial class Help : Form
     {
-        public Form1()
+        public Help()
         {
             InitializeComponent();
+        }
+
+        private void picExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
