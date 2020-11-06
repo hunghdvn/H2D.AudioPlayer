@@ -7,7 +7,7 @@
     <ProjectGuid>{3004655E-CCCE-4E97-A54A-D58A74D2F130}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>H2D.AudioPlayer.App</RootNamespace>
-    <AssemblyName>H2D.AudioPlayer.App</AssemblyName>
+    <AssemblyName>H2D Player</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
