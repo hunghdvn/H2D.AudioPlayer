@@ -1,10 +1,12 @@
 ﻿using H2D.AudioPlayer.App.Properties;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace H2D.AudioPlayer.App
@@ -49,6 +51,8 @@ namespace H2D.AudioPlayer.App
         {
             try
             {
+                SetCurrentEffectType("Battery");
+                //axWindowsMediaPlayer.BeginInit();
                 axWindowsMediaPlayer.uiMode = "none";
                 CurrentPlayList = new List<string>();
                 axWindowsMediaPlayer.settings.volume = 100;
@@ -657,6 +661,25 @@ namespace H2D.AudioPlayer.App
             btnRemoveTrack.ForeColor = Color.Silver;
         }
 
+        public void SetCurrentEffectType(string value)
+        {
+            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
+            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
+            var key = Registry.Users.OpenSubKey(path, true);
+            if (key == null)
+                throw new Exception("Registry key not found!");
+            key.SetValue("CurrentEffectType", value, RegistryValueKind.String);
+        }
+
+        public void SetCurrentEffectPreset(int value)
+        {
+            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
+            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
+            var key = Registry.Users.OpenSubKey(path, true);
+            if (key == null)
+                throw new Exception("Registry key not found!");
+            key.SetValue("CurrentEffectPreset", value, RegistryValueKind.DWord);
+        }
         #endregion
     }
 }
