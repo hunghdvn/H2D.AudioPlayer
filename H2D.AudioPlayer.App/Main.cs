@@ -51,8 +51,28 @@ namespace H2D.AudioPlayer.App
         {
             try
             {
-                SetCurrentEffectType("Battery");
-                //axWindowsMediaPlayer.BeginInit();
+                string visual = GetCurrentEffectType();
+                mnuVisualizationAlchemy.Checked = false;
+                mnuVisualizationBars.Checked = false;
+                mnuVisualizationBattery.Checked = false;
+                mnuVisualizationScope.Checked = false;
+                switch (visual)
+                {
+                    case "Alchemy":
+                        mnuVisualizationAlchemy.Checked = true;
+                        break;
+                    case "Battery":
+                        mnuVisualizationBattery.Checked = true;
+                        break;
+                    case "Bars":
+                        mnuVisualizationBars.Checked = true;
+                        break;
+                    case "Scope":
+                        mnuVisualizationScope.Checked = true;
+                        break;
+                    default:
+                        break;
+                }
                 axWindowsMediaPlayer.uiMode = "none";
                 CurrentPlayList = new List<string>();
                 axWindowsMediaPlayer.settings.volume = 100;
@@ -671,6 +691,16 @@ namespace H2D.AudioPlayer.App
             key.SetValue("CurrentEffectType", value, RegistryValueKind.String);
         }
 
+        public string GetCurrentEffectType()
+        {
+            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
+            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
+            var key = Registry.Users.OpenSubKey(path, true);
+            if (key == null)
+                throw new Exception("Registry key not found!");
+            return key.GetValue("CurrentEffectType").ToString();
+        }
+
         public void SetCurrentEffectPreset(int value)
         {
             WindowsIdentity identiry = WindowsIdentity.GetCurrent();
@@ -681,5 +711,33 @@ namespace H2D.AudioPlayer.App
             key.SetValue("CurrentEffectPreset", value, RegistryValueKind.DWord);
         }
         #endregion
+
+        private void axWindowsMediaPlayer_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                if (axWindowsMediaPlayer.fullScreen)
+                {
+                    axWindowsMediaPlayer.uiMode = "full";
+                }
+                else
+                {
+                    axWindowsMediaPlayer.uiMode = "none";
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
+        private void mnuVisualization_Click(object sender, EventArgs e)
+        {
+            var s = sender as ToolStripMenuItem;
+            SetCurrentEffectType(s.Text);
+            SetCurrentEffectPreset(0);
+            UIMessage.ShowMessage("Application will restart after apply change");
+            Application.Restart();
+        }
     }
 }
