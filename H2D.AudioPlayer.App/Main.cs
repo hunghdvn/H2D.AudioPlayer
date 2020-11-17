@@ -56,6 +56,8 @@ namespace H2D.AudioPlayer.App
                 mnuVisualizationBars.Checked = false;
                 mnuVisualizationBattery.Checked = false;
                 mnuVisualizationScope.Checked = false;
+                menu.Renderer = new ToolStripProfessionalRenderer(new H2DMenuRender());
+                menuSong.Renderer = new ToolStripProfessionalRenderer(new H2DMenuRender());
                 switch (visual)
                 {
                     case "Alchemy":
@@ -669,18 +671,6 @@ namespace H2D.AudioPlayer.App
             }
         }
 
-        private void btnRemoveTrack_MouseHover(object sender, EventArgs e)
-        {
-            btnOpenLocation.ForeColor = Color.Silver;
-            btnRemoveTrack.ForeColor = Color.Black;
-        }
-
-        private void btnOpenLocation_MouseHover(object sender, EventArgs e)
-        {
-            btnOpenLocation.ForeColor = Color.Black;
-            btnRemoveTrack.ForeColor = Color.Silver;
-        }
-
         public void SetCurrentEffectType(string value)
         {
             WindowsIdentity identiry = WindowsIdentity.GetCurrent();
@@ -710,26 +700,6 @@ namespace H2D.AudioPlayer.App
                 throw new Exception("Registry key not found!");
             key.SetValue("CurrentEffectPreset", value, RegistryValueKind.DWord);
         }
-        #endregion
-
-        private void axWindowsMediaPlayer_Resize(object sender, EventArgs e)
-        {
-            try
-            {
-                if (axWindowsMediaPlayer.fullScreen)
-                {
-                    axWindowsMediaPlayer.uiMode = "full";
-                }
-                else
-                {
-                    axWindowsMediaPlayer.uiMode = "none";
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.ShowException();
-            }
-        }
 
         private void mnuVisualization_Click(object sender, EventArgs e)
         {
@@ -738,6 +708,47 @@ namespace H2D.AudioPlayer.App
             SetCurrentEffectPreset(0);
             UIMessage.ShowMessage("Application will restart after apply change");
             Application.Restart();
+        }
+        #endregion
+    }
+
+    public class H2DMenuRender : ProfessionalColorTable
+    {
+        public override Color MenuItemSelected
+        {
+            get { return Color.FromArgb(21, 7, 17); }
+        }
+
+        public override Color MenuItemBorder
+        {
+            get { return Color.Silver; }
+        }
+
+        public override Color ToolStripDropDownBackground
+        {
+            get { return Color.FromArgb(21, 7, 17); }
+        }
+
+        public override Color ButtonSelectedBorder => base.ButtonSelectedBorder;
+
+        public override Color MenuItemSelectedGradientBegin
+        {
+            get { return Color.FromArgb(21, 7, 17); }
+        }
+
+        public override Color MenuItemSelectedGradientEnd
+        {
+            get { return Color.FromArgb(21, 7, 17); }
+        }
+
+        public override Color MenuItemPressedGradientBegin
+        {
+            get { return Color.FromArgb(21, 7, 17); }
+        }
+
+        public override Color MenuItemPressedGradientEnd
+        {
+            get { return Color.FromArgb(21, 7, 17); }
         }
     }
 }

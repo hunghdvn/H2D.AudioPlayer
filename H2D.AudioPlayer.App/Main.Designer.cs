@@ -77,7 +77,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVisualizationAlchemy = new System.Windows.Forms.ToolStripMenuItem();
@@ -622,7 +621,7 @@
             // 
             // pnInfo
             // 
-            this.pnInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.pnInfo.BackColor = System.Drawing.Color.Black;
             this.pnInfo.Controls.Add(this.lbSongName);
             this.pnInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnInfo.Location = new System.Drawing.Point(0, 0);
@@ -632,13 +631,13 @@
             // 
             // lbSongName
             // 
-            this.lbSongName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbSongName.AutoSize = true;
             this.lbSongName.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSongName.ForeColor = System.Drawing.Color.Silver;
-            this.lbSongName.Location = new System.Drawing.Point(0, 0);
+            this.lbSongName.Location = new System.Drawing.Point(0, 14);
             this.lbSongName.Name = "lbSongName";
             this.lbSongName.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.lbSongName.Size = new System.Drawing.Size(274, 45);
+            this.lbSongName.Size = new System.Drawing.Size(10, 17);
             this.lbSongName.TabIndex = 0;
             this.lbSongName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -652,7 +651,6 @@
             this.axWindowsMediaPlayer.Size = new System.Drawing.Size(274, 375);
             this.axWindowsMediaPlayer.TabIndex = 0;
             this.axWindowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer_PlayStateChange);
-            this.axWindowsMediaPlayer.Resize += new System.EventHandler(this.axWindowsMediaPlayer_Resize);
             // 
             // pnPlayList
             // 
@@ -682,7 +680,7 @@
             this.btnOpenLocation});
             this.menuSong.Name = "menuSong";
             this.menuSong.ShowImageMargin = false;
-            this.menuSong.Size = new System.Drawing.Size(178, 86);
+            this.menuSong.Size = new System.Drawing.Size(178, 64);
             this.menuSong.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuSong_ItemClicked);
             // 
             // btnRemoveTrack
@@ -694,7 +692,6 @@
             this.btnRemoveTrack.Size = new System.Drawing.Size(202, 30);
             this.btnRemoveTrack.Text = "Delete";
             this.btnRemoveTrack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemoveTrack.MouseHover += new System.EventHandler(this.btnRemoveTrack_MouseHover);
             // 
             // btnOpenLocation
             // 
@@ -705,7 +702,6 @@
             this.btnOpenLocation.Size = new System.Drawing.Size(202, 30);
             this.btnOpenLocation.Text = "Open file location";
             this.btnOpenLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenLocation.MouseHover += new System.EventHandler(this.btnOpenLocation_MouseHover);
             // 
             // toolTip1
             // 
@@ -713,13 +709,14 @@
             // 
             // menu
             // 
-            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.menu.Font = new System.Drawing.Font("Century Gothic", 10F);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.visualizationToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
+            this.menu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menu.Size = new System.Drawing.Size(824, 27);
             this.menu.TabIndex = 2;
             this.menu.Text = "menuStrip1";
@@ -729,7 +726,6 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFileToolStripMenuItem,
             this.openFolderToolStripMenuItem,
-            this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -738,7 +734,7 @@
             // 
             // openFileToolStripMenuItem
             // 
-            this.openFileToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.openFileToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.openFileToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
             this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
@@ -746,21 +742,15 @@
             // 
             // openFolderToolStripMenuItem
             // 
-            this.openFolderToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.openFolderToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.openFolderToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
             this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
             this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.openFolderToolStripMenuItem.Text = "Open Folder";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
             // exitToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.exitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
@@ -780,7 +770,7 @@
             // mnuVisualizationAlchemy
             // 
             this.mnuVisualizationAlchemy.AutoSize = false;
-            this.mnuVisualizationAlchemy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.mnuVisualizationAlchemy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.mnuVisualizationAlchemy.ForeColor = System.Drawing.Color.Silver;
             this.mnuVisualizationAlchemy.Name = "mnuVisualizationAlchemy";
             this.mnuVisualizationAlchemy.Size = new System.Drawing.Size(189, 24);
@@ -790,7 +780,7 @@
             // 
             // mnuVisualizationBattery
             // 
-            this.mnuVisualizationBattery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.mnuVisualizationBattery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.mnuVisualizationBattery.ForeColor = System.Drawing.Color.Silver;
             this.mnuVisualizationBattery.Name = "mnuVisualizationBattery";
             this.mnuVisualizationBattery.Size = new System.Drawing.Size(189, 24);
@@ -799,7 +789,7 @@
             // 
             // barToolStripMenuItem
             // 
-            this.barToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.barToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.barToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuVisualizationBars,
             this.mnuVisualizationScope});
@@ -810,6 +800,8 @@
             // 
             // mnuVisualizationBars
             // 
+            this.mnuVisualizationBars.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.mnuVisualizationBars.ForeColor = System.Drawing.Color.Silver;
             this.mnuVisualizationBars.Name = "mnuVisualizationBars";
             this.mnuVisualizationBars.Size = new System.Drawing.Size(180, 24);
             this.mnuVisualizationBars.Text = "Bars";
@@ -817,6 +809,8 @@
             // 
             // mnuVisualizationScope
             // 
+            this.mnuVisualizationScope.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.mnuVisualizationScope.ForeColor = System.Drawing.Color.Silver;
             this.mnuVisualizationScope.Name = "mnuVisualizationScope";
             this.mnuVisualizationScope.Size = new System.Drawing.Size(180, 24);
             this.mnuVisualizationScope.Text = "Scope";
@@ -858,6 +852,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picPlay)).EndInit();
             this.pnCenter.ResumeLayout(false);
             this.pnInfo.ResumeLayout(false);
+            this.pnInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).EndInit();
             this.menuSong.ResumeLayout(false);
             this.menu.ResumeLayout(false);
@@ -916,7 +911,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFolderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visualizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuVisualizationAlchemy;
