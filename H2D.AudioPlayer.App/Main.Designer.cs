@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.pnMenu = new System.Windows.Forms.Panel();
+            this.pnMenuLeft = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.pnSubTools = new System.Windows.Forms.Panel();
@@ -66,13 +66,13 @@
             this.pnInfo = new System.Windows.Forms.Panel();
             this.lbSongName = new System.Windows.Forms.Label();
             this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            this.pnPlayList = new System.Windows.Forms.Panel();
-            this.timerPlay = new System.Windows.Forms.Timer(this.components);
-            this.timerPanRight = new System.Windows.Forms.Timer(this.components);
-            this.menuSong = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnRemoveTrack = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnOpenLocation = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pbTitle = new System.Windows.Forms.Panel();
+            this.lbTitle = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnMaximize = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.pnMenuTop = new System.Windows.Forms.Panel();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,10 +81,17 @@
             this.visualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVisualizationAlchemy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVisualizationBattery = new System.Windows.Forms.ToolStripMenuItem();
-            this.barToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBarAndWave = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVisualizationBars = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVisualizationScope = new System.Windows.Forms.ToolStripMenuItem();
-            this.pnMenu.SuspendLayout();
+            this.pnPlayList = new System.Windows.Forms.Panel();
+            this.timerPlay = new System.Windows.Forms.Timer(this.components);
+            this.timerPanRight = new System.Windows.Forms.Timer(this.components);
+            this.menuSong = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnRemoveTrack = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnOpenLocation = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pnMenuLeft.SuspendLayout();
             this.pnSubTools.SuspendLayout();
             this.pnSubPlaylist.SuspendLayout();
             this.pnSubMedia.SuspendLayout();
@@ -101,29 +108,32 @@
             this.pnCenter.SuspendLayout();
             this.pnInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
-            this.menuSong.SuspendLayout();
+            this.pbTitle.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.pnMenuTop.SuspendLayout();
             this.menu.SuspendLayout();
+            this.menuSong.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnMenu
+            // pnMenuLeft
             // 
-            this.pnMenu.AutoScroll = true;
-            this.pnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
-            this.pnMenu.Controls.Add(this.btnExit);
-            this.pnMenu.Controls.Add(this.btnHelp);
-            this.pnMenu.Controls.Add(this.pnSubTools);
-            this.pnMenu.Controls.Add(this.btnTools);
-            this.pnMenu.Controls.Add(this.pnSubPlaylist);
-            this.pnMenu.Controls.Add(this.btnPlaylist);
-            this.pnMenu.Controls.Add(this.pnSubMedia);
-            this.pnMenu.Controls.Add(this.btnMedia);
-            this.pnMenu.Controls.Add(this.pnLogo);
-            this.pnMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnMenu.Location = new System.Drawing.Point(0, 27);
-            this.pnMenu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(250, 480);
-            this.pnMenu.TabIndex = 0;
+            this.pnMenuLeft.AutoScroll = true;
+            this.pnMenuLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.pnMenuLeft.Controls.Add(this.btnExit);
+            this.pnMenuLeft.Controls.Add(this.btnHelp);
+            this.pnMenuLeft.Controls.Add(this.pnSubTools);
+            this.pnMenuLeft.Controls.Add(this.btnTools);
+            this.pnMenuLeft.Controls.Add(this.pnSubPlaylist);
+            this.pnMenuLeft.Controls.Add(this.btnPlaylist);
+            this.pnMenuLeft.Controls.Add(this.pnSubMedia);
+            this.pnMenuLeft.Controls.Add(this.btnMedia);
+            this.pnMenuLeft.Controls.Add(this.pnLogo);
+            this.pnMenuLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnMenuLeft.Location = new System.Drawing.Point(0, 58);
+            this.pnMenuLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnMenuLeft.Name = "pnMenuLeft";
+            this.pnMenuLeft.Size = new System.Drawing.Size(250, 462);
+            this.pnMenuLeft.TabIndex = 0;
             // 
             // btnExit
             // 
@@ -419,10 +429,10 @@
             this.pnControl.Controls.Add(this.picNext);
             this.pnControl.Controls.Add(this.picPlay);
             this.pnControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnControl.Location = new System.Drawing.Point(250, 402);
+            this.pnControl.Location = new System.Drawing.Point(250, 415);
             this.pnControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnControl.Name = "pnControl";
-            this.pnControl.Size = new System.Drawing.Size(574, 105);
+            this.pnControl.Size = new System.Drawing.Size(590, 105);
             this.pnControl.TabIndex = 1;
             // 
             // pnVol
@@ -430,7 +440,7 @@
             this.pnVol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnVol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(33)))), ((int)(((byte)(50)))));
             this.pnVol.Controls.Add(this.pnVolCurrent);
-            this.pnVol.Location = new System.Drawing.Point(339, 34);
+            this.pnVol.Location = new System.Drawing.Point(355, 34);
             this.pnVol.Name = "pnVol";
             this.pnVol.Size = new System.Drawing.Size(153, 7);
             this.pnVol.TabIndex = 20;
@@ -457,7 +467,7 @@
             this.lbVol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbVol.AutoSize = true;
             this.lbVol.ForeColor = System.Drawing.Color.LightGray;
-            this.lbVol.Location = new System.Drawing.Point(513, 29);
+            this.lbVol.Location = new System.Drawing.Point(529, 29);
             this.lbVol.Name = "lbVol";
             this.lbVol.Size = new System.Drawing.Size(28, 19);
             this.lbVol.TabIndex = 23;
@@ -478,7 +488,7 @@
             this.lbLastTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbLastTime.AutoSize = true;
             this.lbLastTime.ForeColor = System.Drawing.Color.LightGray;
-            this.lbLastTime.Location = new System.Drawing.Point(513, 64);
+            this.lbLastTime.Location = new System.Drawing.Point(529, 64);
             this.lbLastTime.Name = "lbLastTime";
             this.lbLastTime.Size = new System.Drawing.Size(45, 19);
             this.lbLastTime.TabIndex = 20;
@@ -492,7 +502,7 @@
             this.pnTime.Controls.Add(this.pnTimeCurrent);
             this.pnTime.Location = new System.Drawing.Point(63, 71);
             this.pnTime.Name = "pnTime";
-            this.pnTime.Size = new System.Drawing.Size(430, 7);
+            this.pnTime.Size = new System.Drawing.Size(446, 7);
             this.pnTime.TabIndex = 19;
             this.pnTime.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Time_MouseClick);
             this.pnTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Time_MouseDown);
@@ -516,7 +526,7 @@
             // 
             this.picVol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picVol.Image = global::H2D.AudioPlayer.App.Properties.Resources.high_vol;
-            this.picVol.Location = new System.Drawing.Point(309, 24);
+            this.picVol.Location = new System.Drawing.Point(325, 24);
             this.picVol.Name = "picVol";
             this.picVol.Size = new System.Drawing.Size(24, 24);
             this.picVol.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -529,7 +539,7 @@
             this.picPlaylist.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picPlaylist.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picPlaylist.Image = global::H2D.AudioPlayer.App.Properties.Resources.playlist_off;
-            this.picPlaylist.Location = new System.Drawing.Point(28, 24);
+            this.picPlaylist.Location = new System.Drawing.Point(36, 24);
             this.picPlaylist.Name = "picPlaylist";
             this.picPlaylist.Size = new System.Drawing.Size(24, 24);
             this.picPlaylist.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -543,7 +553,7 @@
             this.picShuffle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picShuffle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picShuffle.Image = global::H2D.AudioPlayer.App.Properties.Resources.unshuffle;
-            this.picShuffle.Location = new System.Drawing.Point(73, 24);
+            this.picShuffle.Location = new System.Drawing.Point(81, 24);
             this.picShuffle.Name = "picShuffle";
             this.picShuffle.Size = new System.Drawing.Size(24, 24);
             this.picShuffle.TabIndex = 16;
@@ -556,7 +566,7 @@
             this.picRepeat.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picRepeat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picRepeat.Image = global::H2D.AudioPlayer.App.Properties.Resources.repeat_off;
-            this.picRepeat.Location = new System.Drawing.Point(265, 24);
+            this.picRepeat.Location = new System.Drawing.Point(273, 24);
             this.picRepeat.Name = "picRepeat";
             this.picRepeat.Size = new System.Drawing.Size(24, 24);
             this.picRepeat.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -570,7 +580,7 @@
             this.picPre.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picPre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picPre.Image = ((System.Drawing.Image)(resources.GetObject("picPre.Image")));
-            this.picPre.Location = new System.Drawing.Point(115, 24);
+            this.picPre.Location = new System.Drawing.Point(123, 24);
             this.picPre.Name = "picPre";
             this.picPre.Size = new System.Drawing.Size(24, 24);
             this.picPre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -584,7 +594,7 @@
             this.picNext.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picNext.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picNext.Image = ((System.Drawing.Image)(resources.GetObject("picNext.Image")));
-            this.picNext.Location = new System.Drawing.Point(224, 24);
+            this.picNext.Location = new System.Drawing.Point(232, 24);
             this.picNext.Name = "picNext";
             this.picNext.Size = new System.Drawing.Size(24, 24);
             this.picNext.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -598,7 +608,7 @@
             this.picPlay.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picPlay.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picPlay.Image = global::H2D.AudioPlayer.App.Properties.Resources.play;
-            this.picPlay.Location = new System.Drawing.Point(166, 20);
+            this.picPlay.Location = new System.Drawing.Point(174, 20);
             this.picPlay.Name = "picPlay";
             this.picPlay.Size = new System.Drawing.Size(32, 32);
             this.picPlay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -613,10 +623,10 @@
             this.pnCenter.Controls.Add(this.pnInfo);
             this.pnCenter.Controls.Add(this.axWindowsMediaPlayer);
             this.pnCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnCenter.Location = new System.Drawing.Point(250, 27);
+            this.pnCenter.Location = new System.Drawing.Point(250, 58);
             this.pnCenter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnCenter.Name = "pnCenter";
-            this.pnCenter.Size = new System.Drawing.Size(274, 375);
+            this.pnCenter.Size = new System.Drawing.Size(290, 357);
             this.pnCenter.TabIndex = 2;
             // 
             // pnInfo
@@ -626,7 +636,7 @@
             this.pnInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnInfo.Location = new System.Drawing.Point(0, 0);
             this.pnInfo.Name = "pnInfo";
-            this.pnInfo.Size = new System.Drawing.Size(274, 45);
+            this.pnInfo.Size = new System.Drawing.Size(290, 45);
             this.pnInfo.TabIndex = 1;
             // 
             // lbSongName
@@ -648,18 +658,227 @@
             this.axWindowsMediaPlayer.Location = new System.Drawing.Point(0, 0);
             this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
             this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
-            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(274, 375);
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(290, 357);
             this.axWindowsMediaPlayer.TabIndex = 0;
             this.axWindowsMediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer_PlayStateChange);
+            // 
+            // pbTitle
+            // 
+            this.pbTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.pbTitle.Controls.Add(this.lbTitle);
+            this.pbTitle.Controls.Add(this.panel1);
+            this.pbTitle.Controls.Add(this.pnMenuTop);
+            this.pbTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pbTitle.Location = new System.Drawing.Point(0, 0);
+            this.pbTitle.Name = "pbTitle";
+            this.pbTitle.Size = new System.Drawing.Size(840, 58);
+            this.pbTitle.TabIndex = 1;
+            // 
+            // lbTitle
+            // 
+            this.lbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbTitle.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitle.ForeColor = System.Drawing.Color.Silver;
+            this.lbTitle.Location = new System.Drawing.Point(0, 0);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lbTitle.Size = new System.Drawing.Size(742, 31);
+            this.lbTitle.TabIndex = 5;
+            this.lbTitle.Text = "H2D Player";
+            this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbTitle.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbTitle_MouseDoubleClick);
+            this.lbTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbTitle_MouseDown);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Controls.Add(this.btnMinimize);
+            this.panel1.Controls.Add(this.btnMaximize);
+            this.panel1.Controls.Add(this.btnClose);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(742, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.panel1.Size = new System.Drawing.Size(98, 31);
+            this.panel1.TabIndex = 4;
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
+            this.btnMinimize.Location = new System.Drawing.Point(0, 0);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(31, 31);
+            this.btnMinimize.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.btnMinimize, "Minimize");
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMaximize.FlatAppearance.BorderSize = 0;
+            this.btnMaximize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.btnMaximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximize.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximize.Image")));
+            this.btnMaximize.Location = new System.Drawing.Point(31, 0);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(31, 31);
+            this.btnMaximize.TabIndex = 1;
+            this.btnMaximize.Text = "button2";
+            this.toolTip1.SetToolTip(this.btnMaximize, "Maximize");
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(62, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(31, 31);
+            this.btnClose.TabIndex = 0;
+            this.btnClose.Text = "button1";
+            this.toolTip1.SetToolTip(this.btnClose, "Close");
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // pnMenuTop
+            // 
+            this.pnMenuTop.Controls.Add(this.menu);
+            this.pnMenuTop.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnMenuTop.Location = new System.Drawing.Point(0, 31);
+            this.pnMenuTop.Name = "pnMenuTop";
+            this.pnMenuTop.Size = new System.Drawing.Size(840, 27);
+            this.pnMenuTop.TabIndex = 3;
+            // 
+            // menu
+            // 
+            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.menu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menu.Font = new System.Drawing.Font("Century Gothic", 10F);
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.visualizationToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.menu.Size = new System.Drawing.Size(840, 27);
+            this.menu.TabIndex = 3;
+            this.menu.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFileToolStripMenuItem,
+            this.openFolderToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(43, 23);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openFileToolStripMenuItem
+            // 
+            this.openFileToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.openFileToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.openFileToolStripMenuItem.Text = "Open File";
+            // 
+            // openFolderToolStripMenuItem
+            // 
+            this.openFolderToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.openFolderToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+            this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
+            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.openFolderToolStripMenuItem.Text = "Open Folder";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // visualizationToolStripMenuItem
+            // 
+            this.visualizationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVisualizationAlchemy,
+            this.mnuVisualizationBattery,
+            this.mnuBarAndWave});
+            this.visualizationToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
+            this.visualizationToolStripMenuItem.Name = "visualizationToolStripMenuItem";
+            this.visualizationToolStripMenuItem.Size = new System.Drawing.Size(105, 23);
+            this.visualizationToolStripMenuItem.Text = "Visualization";
+            // 
+            // mnuVisualizationAlchemy
+            // 
+            this.mnuVisualizationAlchemy.AutoSize = false;
+            this.mnuVisualizationAlchemy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.mnuVisualizationAlchemy.ForeColor = System.Drawing.Color.Silver;
+            this.mnuVisualizationAlchemy.Name = "mnuVisualizationAlchemy";
+            this.mnuVisualizationAlchemy.Size = new System.Drawing.Size(189, 24);
+            this.mnuVisualizationAlchemy.Text = "Alchemy";
+            this.mnuVisualizationAlchemy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.mnuVisualizationAlchemy.Click += new System.EventHandler(this.mnuVisualization_Click);
+            // 
+            // mnuVisualizationBattery
+            // 
+            this.mnuVisualizationBattery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.mnuVisualizationBattery.ForeColor = System.Drawing.Color.Silver;
+            this.mnuVisualizationBattery.Name = "mnuVisualizationBattery";
+            this.mnuVisualizationBattery.Size = new System.Drawing.Size(189, 24);
+            this.mnuVisualizationBattery.Text = "Battery";
+            this.mnuVisualizationBattery.Click += new System.EventHandler(this.mnuVisualization_Click);
+            // 
+            // mnuBarAndWave
+            // 
+            this.mnuBarAndWave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.mnuBarAndWave.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuVisualizationBars,
+            this.mnuVisualizationScope});
+            this.mnuBarAndWave.ForeColor = System.Drawing.Color.Silver;
+            this.mnuBarAndWave.Name = "mnuBarAndWave";
+            this.mnuBarAndWave.Size = new System.Drawing.Size(189, 24);
+            this.mnuBarAndWave.Text = "Bars and Waves";
+            // 
+            // mnuVisualizationBars
+            // 
+            this.mnuVisualizationBars.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.mnuVisualizationBars.ForeColor = System.Drawing.Color.Silver;
+            this.mnuVisualizationBars.Name = "mnuVisualizationBars";
+            this.mnuVisualizationBars.Size = new System.Drawing.Size(180, 24);
+            this.mnuVisualizationBars.Text = "Bars";
+            this.mnuVisualizationBars.Click += new System.EventHandler(this.mnuVisualization_Click);
+            // 
+            // mnuVisualizationScope
+            // 
+            this.mnuVisualizationScope.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.mnuVisualizationScope.ForeColor = System.Drawing.Color.Silver;
+            this.mnuVisualizationScope.Name = "mnuVisualizationScope";
+            this.mnuVisualizationScope.Size = new System.Drawing.Size(180, 24);
+            this.mnuVisualizationScope.Text = "Scope";
+            this.mnuVisualizationScope.Click += new System.EventHandler(this.mnuVisualization_Click);
             // 
             // pnPlayList
             // 
             this.pnPlayList.AutoScroll = true;
             this.pnPlayList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.pnPlayList.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnPlayList.Location = new System.Drawing.Point(524, 27);
+            this.pnPlayList.Location = new System.Drawing.Point(540, 58);
             this.pnPlayList.Name = "pnPlayList";
-            this.pnPlayList.Size = new System.Drawing.Size(300, 375);
+            this.pnPlayList.Size = new System.Drawing.Size(300, 357);
             this.pnPlayList.TabIndex = 1;
             // 
             // timerPlay
@@ -703,139 +922,26 @@
             this.btnOpenLocation.Text = "Open file location";
             this.btnOpenLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // toolTip1
-            // 
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // menu
-            // 
-            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.menu.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.visualizationToolStripMenuItem});
-            this.menu.Location = new System.Drawing.Point(0, 0);
-            this.menu.Name = "menu";
-            this.menu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menu.Size = new System.Drawing.Size(824, 27);
-            this.menu.TabIndex = 2;
-            this.menu.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openFileToolStripMenuItem,
-            this.openFolderToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(43, 23);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // openFileToolStripMenuItem
-            // 
-            this.openFileToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.openFileToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.openFileToolStripMenuItem.Text = "Open File";
-            // 
-            // openFolderToolStripMenuItem
-            // 
-            this.openFolderToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.openFolderToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            this.openFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.openFolderToolStripMenuItem.Text = "Open Folder";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.exitToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // visualizationToolStripMenuItem
-            // 
-            this.visualizationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuVisualizationAlchemy,
-            this.mnuVisualizationBattery,
-            this.barToolStripMenuItem});
-            this.visualizationToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.visualizationToolStripMenuItem.Name = "visualizationToolStripMenuItem";
-            this.visualizationToolStripMenuItem.Size = new System.Drawing.Size(105, 23);
-            this.visualizationToolStripMenuItem.Text = "Visualization";
-            // 
-            // mnuVisualizationAlchemy
-            // 
-            this.mnuVisualizationAlchemy.AutoSize = false;
-            this.mnuVisualizationAlchemy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.mnuVisualizationAlchemy.ForeColor = System.Drawing.Color.Silver;
-            this.mnuVisualizationAlchemy.Name = "mnuVisualizationAlchemy";
-            this.mnuVisualizationAlchemy.Size = new System.Drawing.Size(189, 24);
-            this.mnuVisualizationAlchemy.Text = "Alchemy";
-            this.mnuVisualizationAlchemy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mnuVisualizationAlchemy.Click += new System.EventHandler(this.mnuVisualization_Click);
-            // 
-            // mnuVisualizationBattery
-            // 
-            this.mnuVisualizationBattery.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.mnuVisualizationBattery.ForeColor = System.Drawing.Color.Silver;
-            this.mnuVisualizationBattery.Name = "mnuVisualizationBattery";
-            this.mnuVisualizationBattery.Size = new System.Drawing.Size(189, 24);
-            this.mnuVisualizationBattery.Text = "Battery";
-            this.mnuVisualizationBattery.Click += new System.EventHandler(this.mnuVisualization_Click);
-            // 
-            // barToolStripMenuItem
-            // 
-            this.barToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.barToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuVisualizationBars,
-            this.mnuVisualizationScope});
-            this.barToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.barToolStripMenuItem.Name = "barToolStripMenuItem";
-            this.barToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
-            this.barToolStripMenuItem.Text = "Bars and Waves";
-            // 
-            // mnuVisualizationBars
-            // 
-            this.mnuVisualizationBars.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.mnuVisualizationBars.ForeColor = System.Drawing.Color.Silver;
-            this.mnuVisualizationBars.Name = "mnuVisualizationBars";
-            this.mnuVisualizationBars.Size = new System.Drawing.Size(180, 24);
-            this.mnuVisualizationBars.Text = "Bars";
-            this.mnuVisualizationBars.Click += new System.EventHandler(this.mnuVisualization_Click);
-            // 
-            // mnuVisualizationScope
-            // 
-            this.mnuVisualizationScope.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.mnuVisualizationScope.ForeColor = System.Drawing.Color.Silver;
-            this.mnuVisualizationScope.Name = "mnuVisualizationScope";
-            this.mnuVisualizationScope.Size = new System.Drawing.Size(180, 24);
-            this.mnuVisualizationScope.Text = "Scope";
-            this.mnuVisualizationScope.Click += new System.EventHandler(this.mnuVisualization_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 507);
+            this.ClientSize = new System.Drawing.Size(840, 520);
             this.Controls.Add(this.pnCenter);
             this.Controls.Add(this.pnPlayList);
             this.Controls.Add(this.pnControl);
-            this.Controls.Add(this.pnMenu);
-            this.Controls.Add(this.menu);
+            this.Controls.Add(this.pnMenuLeft);
+            this.Controls.Add(this.pbTitle);
             this.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menu;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(840, 520);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "H2D Player";
             this.Load += new System.EventHandler(this.Main_Load);
-            this.pnMenu.ResumeLayout(false);
+            this.pnMenuLeft.ResumeLayout(false);
             this.pnSubTools.ResumeLayout(false);
             this.pnSubPlaylist.ResumeLayout(false);
             this.pnSubMedia.ResumeLayout(false);
@@ -854,17 +960,20 @@
             this.pnInfo.ResumeLayout(false);
             this.pnInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).EndInit();
-            this.menuSong.ResumeLayout(false);
+            this.pbTitle.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.pnMenuTop.ResumeLayout(false);
+            this.pnMenuTop.PerformLayout();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.menuSong.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pnMenu;
+        private System.Windows.Forms.Panel pnMenuLeft;
         private System.Windows.Forms.Panel pnControl;
         private System.Windows.Forms.Panel pnCenter;
         private System.Windows.Forms.Panel pnLogo;
@@ -907,6 +1016,8 @@
         private System.Windows.Forms.Panel pnSubTools;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Panel pbTitle;
+        private System.Windows.Forms.Panel pnMenuTop;
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
@@ -915,8 +1026,13 @@
         private System.Windows.Forms.ToolStripMenuItem visualizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuVisualizationAlchemy;
         private System.Windows.Forms.ToolStripMenuItem mnuVisualizationBattery;
-        private System.Windows.Forms.ToolStripMenuItem barToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuBarAndWave;
         private System.Windows.Forms.ToolStripMenuItem mnuVisualizationBars;
         private System.Windows.Forms.ToolStripMenuItem mnuVisualizationScope;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Button btnMaximize;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lbTitle;
     }
 }

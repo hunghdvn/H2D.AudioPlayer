@@ -334,6 +334,36 @@
         AAAL
 </value>
   </data>
+  <metadata name="menu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>539, 17</value>
+  </metadata>
+  <data name="btnMinimize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAALJJREFUSEvt
+        lTEKwkAQRfcEOaY5gq2lYApjZ6ER72TlESxERMEqvg9TObrr2LoPHmSy+Ttki9lUCTGm1OAWTzgGVWaD
+        jW3nYXGPN1zgNGiHdxxsOw+LF1xaGYZsj2crPSzqV2dWhlFWe1jpqQ1qgyJ/2IDnFucFJ/b5Tw2O9i7n
+        wT6PN4jyTQMNu97KMGRXmB12GtcPXOO7886pjLLZca0LZ4dXfD3rksrosvp84VQ8KT0BsEf+/xB2MiUA
+        AAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btnMaximize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAJVJREFUSEvt
+        lbEKwlAMRfMF/V3XjoIO1s1BK/09B5FioVM9F7KFtmQ2B84Qwn2hHRIrUixmDT7whUtSZe7Y+HMRmgN+
+        8YSHpGecsPfnIjQ/ePEyDdkO315GaOpTWy/TKKs3vIzUgBqwSw3Y5T8GaNl1XqYhe8XNZad1PeMNj0mV
+        UXZzXevgPHFE/a6MyuhYrR+cImL2A4k03F74Rm+nAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnClose.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAARFJREFUSEvt
+        lc1qwkAUhQcfwNfttqgF+yMad0VtS1/JbuoruBARBVfpd8IxIGOEm01deMgHOffm3nEycSbdFVKZUhc+
+        YA1lENUsoOt2uUh+wx5e4SHIGxzg0+1ykdzCxDYsagvY2OYiqak+2oalWvWwzfUvA+BX8Gxbi9gL/NpW
+        Ui1wNUhJPWRbCT9xfOSQYiPHxg5Vwrd7RcQGzs1g7vuB07WItV8D4k/OX2wuqVZ521wuvjSDDpx+udBM
+        Ok7XItZqDdRc/1DletD3vQY8GwR/g4uM/4Gmz3RpW0m1wNUgJfWQbVg3MYA2u8I2LGqncHWz03Z9hHcY
+        BlGNaq9u1zpwvmAHel0RVKPDqvnAuStXSn/XFCTs6DHVFAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="timerPlay.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>114, 17</value>
   </metadata>
@@ -345,9 +375,6 @@
   </metadata>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="menu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>456, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>45</value>

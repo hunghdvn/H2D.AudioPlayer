@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Windows.Forms;
 
@@ -24,6 +25,14 @@ namespace H2D.AudioPlayer.App
         private List<string> CurrentPlayList = new List<string>();
         private bool BIsMouseDown = false;
         #endregion
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
 
         #region Method
 
@@ -56,6 +65,7 @@ namespace H2D.AudioPlayer.App
                 mnuVisualizationBars.Checked = false;
                 mnuVisualizationBattery.Checked = false;
                 mnuVisualizationScope.Checked = false;
+                mnuBarAndWave.Checked = false;
                 menu.Renderer = new ToolStripProfessionalRenderer(new H2DMenuRender());
                 menuSong.Renderer = new ToolStripProfessionalRenderer(new H2DMenuRender());
                 switch (visual)
@@ -68,9 +78,11 @@ namespace H2D.AudioPlayer.App
                         break;
                     case "Bars":
                         mnuVisualizationBars.Checked = true;
+                        mnuBarAndWave.Checked = true;
                         break;
                     case "Scope":
                         mnuVisualizationScope.Checked = true;
+                        mnuBarAndWave.Checked = true;
                         break;
                     default:
                         break;
@@ -503,6 +515,36 @@ namespace H2D.AudioPlayer.App
             }
         }
 
+        private void menuSong_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            try
+            {
+                var menu = sender as ContextMenuStrip;
+                var button = menu.SourceControl as Button;
+                var track = axWindowsMediaPlayer.currentPlaylist.Item[(int)button.Tag];
+                if (e.ClickedItem.Name == "btnRemoveTrack")
+                {
+                    if (track.name == axWindowsMediaPlayer.currentMedia.name)
+                    {
+                        return;
+                    }
+                    axWindowsMediaPlayer.currentPlaylist.removeItem(track);
+                    CurrentPlayList.Remove(track.sourceURL);
+                    LoadPlayList();
+                }
+                else
+                {
+                    string path = track.sourceURL;
+                    string dic = Path.GetDirectoryName(path);
+                    Process.Start(dic);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowException();
+            }
+        }
+
         private void ShowVolPicture()
         {
             if (axWindowsMediaPlayer.settings.volume == 0)
@@ -592,6 +634,65 @@ namespace H2D.AudioPlayer.App
         }
         #endregion
 
+        #region Visualization
+        public void SetCurrentEffectType(string value)
+        {
+            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
+            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
+            var key = Registry.Users.OpenSubKey(path, true);
+            if (key == null)
+                throw new Exception("Registry key not found!");
+            key.SetValue("CurrentEffectType", value, RegistryValueKind.String);
+        }
+
+        public string GetCurrentEffectType()
+        {
+            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
+            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
+            var key = Registry.Users.OpenSubKey(path, true);
+            if (key == null)
+                throw new Exception("Registry key not found!");
+            string effectType = key.GetValue("CurrentEffectType").ToString();
+            string effectPreset = key.GetValue("CurrentEffectPreset").ToString();
+            if (effectPreset == "3")
+            {
+                return "Scope";
+            }
+            return effectType;
+        }
+
+        public void SetCurrentEffectPreset(int value)
+        {
+            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
+            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
+            var key = Registry.Users.OpenSubKey(path, true);
+            if (key == null)
+                throw new Exception("Registry key not found!");
+            key.SetValue("CurrentEffectPreset", value, RegistryValueKind.DWord);
+        }
+
+        private void mnuVisualization_Click(object sender, EventArgs e)
+        {
+            var s = sender as ToolStripMenuItem;
+            if (s.Text == "Scope")
+            {
+                SetCurrentEffectType("Bars");
+                SetCurrentEffectPreset(3);
+            }
+            else
+            {
+                SetCurrentEffectType(s.Text);
+                SetCurrentEffectPreset(0);
+            }
+            UIMessage.ShowMessage("Application will restart after apply change");
+            Application.Restart();
+        }
+        #endregion
+
+        #region Playlist
+
+        #endregion
+
         private void timerPlay_Tick(object sender, EventArgs e)
         {
             try
@@ -641,73 +742,42 @@ namespace H2D.AudioPlayer.App
             }
         }
 
-        private void menuSong_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            try
+            Application.Exit();
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                WindowState = FormWindowState.Maximized;
+            else
+                WindowState = FormWindowState.Normal;
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void lbTitle_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+                WindowState = FormWindowState.Maximized;
+            else
+                WindowState = FormWindowState.Normal;
+        }
+
+        private void lbTitle_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
             {
-                var menu = sender as ContextMenuStrip;
-                var button = menu.SourceControl as Button;
-                var track = axWindowsMediaPlayer.currentPlaylist.Item[(int)button.Tag];
-                if (e.ClickedItem.Name == "btnRemoveTrack")
+                if ((e.Clicks == 1) && (WindowState != FormWindowState.Maximized))
                 {
-                    if (track.name == axWindowsMediaPlayer.currentMedia.name)
-                    {
-                        return;
-                    }
-                    axWindowsMediaPlayer.currentPlaylist.removeItem(track);
-                    CurrentPlayList.Remove(track.sourceURL);
-                    LoadPlayList();
-                }
-                else
-                {
-                    string path = track.sourceURL;
-                    string dic = Path.GetDirectoryName(path);
-                    Process.Start(dic);
+                    ReleaseCapture();
+                    SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
                 }
             }
-            catch (Exception ex)
-            {
-                ex.ShowException();
-            }
-        }
-
-        public void SetCurrentEffectType(string value)
-        {
-            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
-            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
-            var key = Registry.Users.OpenSubKey(path, true);
-            if (key == null)
-                throw new Exception("Registry key not found!");
-            key.SetValue("CurrentEffectType", value, RegistryValueKind.String);
-        }
-
-        public string GetCurrentEffectType()
-        {
-            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
-            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
-            var key = Registry.Users.OpenSubKey(path, true);
-            if (key == null)
-                throw new Exception("Registry key not found!");
-            return key.GetValue("CurrentEffectType").ToString();
-        }
-
-        public void SetCurrentEffectPreset(int value)
-        {
-            WindowsIdentity identiry = WindowsIdentity.GetCurrent();
-            String path = String.Format(@"{0}\Software\Microsoft\MediaPlayer\Preferences", identiry.User.Value);
-            var key = Registry.Users.OpenSubKey(path, true);
-            if (key == null)
-                throw new Exception("Registry key not found!");
-            key.SetValue("CurrentEffectPreset", value, RegistryValueKind.DWord);
-        }
-
-        private void mnuVisualization_Click(object sender, EventArgs e)
-        {
-            var s = sender as ToolStripMenuItem;
-            SetCurrentEffectType(s.Text);
-            SetCurrentEffectPreset(0);
-            UIMessage.ShowMessage("Application will restart after apply change");
-            Application.Restart();
         }
         #endregion
     }
